@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hello App!</title>
+</head>
+<body>
+<div id="app">
+    <input type="button" v-on:click="run" value="开始">
+    <input type="button" v-on:click="stop" value="结束">
+    <p>{{msg}}</p>
+</div>
+</body>
+<script src="lib/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: "#app",
+        data: {
+            msg: ' Faded - Alan  Walker You were the shadow to my ligh Did you feel us Another start You fade away Afraid our aim is out of sight Wanna see us Alive Where are you now Where are you now Where are you now Was it all in my fantasy Where are you now Were you only imaginary Where are you now Atlantis Under the sea Under the sea Where are you now Another dream The monsters running wild inside of me I\'m faded I\'m faded So lost I\'m faded I\'m faded So lost I\'m faded These shallow waters never met What I needed I\'m letting go A deeper dive Eternal silence of the sea I\'m breathing Alive Where are you now Where are you now Under the bright But faded lights You\'ve set my heart on fire Where are you now Where are you now Another dream Another dream Another dream Another dream Where are you now Atlantis Under the sea Under the sea Where are you now Another dream The monster running wild inside of me I\'m faded I\'m faded So lost I\'m faded I\'m faded So lost I\'m faded' ,
+            interval: null
+        },
+        methods: {
+            run: function () {
+                let _this = this;
+                if (_this.interval !== null) {
+                    return;
+                }
+                this.interval = setInterval(() => {
+                    console.log(_this.msg);
+                    let first = _this.msg.substring(0, 1);
+                    let remained = _this.msg.substr(1);
+                    _this.msg = remained + first;
+                }, 400);
+            },
+            stop: function () {
+                let _this = this;
+                console.log(_this.msg.trim());
+                console.log(_this.interval);
+                clearInterval(_this.interval);
+                this.interval = null;
+            }
+        }
+    })
+</script>
+</html>
