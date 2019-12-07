@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+    <script src="lib/vue.js"></script>
+<body>
+    <div id="app">
+        <input type = "text" v-model="first">
+        <select v-model="operator">
+            <option>+</option>
+            <option>-</option>
+            <option>*</option>
+            <option>/</option>
+        </select>
+        <input type = "text" v-model="second">
+        <input type="button" @click="calculator" value="=">
+        <input type = "text" v-model="result">
+    </div>
+
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                first: '0',
+                second: '0',
+                operator: '+',
+                result: '0'
+            },
+            methods: {
+                calculator() {
+                    let str = this.first + this.operator + this.second;
+                    this.result = eval(str);
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>
