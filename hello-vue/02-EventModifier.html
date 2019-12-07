@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="lib/vue.js"></script>
+    <style>
+        .inner {
+            width: 100%;
+            height: 200px;
+            background-color: aqua;
+        }
+
+        .outer {
+            width: 100%;
+            height: 250px;
+            background-color: blanchedalmond;
+        }
+    </style>
+</head>
+<body>
+    <!-- 1、点击一个区块内的按钮时，执行此按钮内事件后，会依次执行外层区块内的点击事件，这种特性，称为冒泡   -->
+<!--    <div id="app" class="outer" @click="outerClick">-->
+<!--        <div class="inner" @click="innerClick">-->
+<!--            <input type="button" @click="buttonClick" value="点击">-->
+<!--            <p>{{msg}}</p>-->
+<!--        </div>-->
+<!--    </div>-->
+
+    <!-- 2、 .self 修饰事件: 只有点击自身，才会触发其点击事件   -->
+<!--    <div id="app" class="outer" @click="outerClick">-->
+<!--        <div class="inner" @click.self="innerClick">-->
+<!--            <input type="button" @click="buttonClick" value="点击">-->
+<!--            <p>{{msg}}</p>-->
+<!--        </div>-->
+<!--    </div>-->
+
+    <!-- 3、.stop 修饰事件: 阻止冒泡事件  -->
+<!--    <div id="app" class="outer" @click="outerClick">-->
+<!--        <div class="inner" @click="innerClick">-->
+<!--            <input type="button" @click.stop="buttonClick" value="点击">-->
+<!--            <p>{{msg}}</p>-->
+<!--        </div>-->
+<!--    </div>-->
+
+    <!-- 4、.prevent 修饰事件: 阻止默认事件-->
+<!--    <div id="app" class="outer" @click="outerClick">-->
+<!--        <div class="inner" @click="innerClick">-->
+<!--            <input type="button" @click.stop="buttonClick" value="点击">-->
+<!--            <a href="http://www.baidu.com" @click.prevent="linkClick">{{baidu}}</a>-->
+<!--            <p>{{msg}}</p>-->
+<!--        </div>-->
+<!--    </div>-->
+
+    <!--
+        5、 .capture 修饰事件: 添加事件监听器时使用事件捕获模式
+            在为 dom 添加监听器时会依次从祖先 dom 往下找，找到目标 dom 此过程称为 捕获
+            然后事件往上传播，此过程称为 冒泡
+     -->
+<!--    <div id="app" class="outer" @click="outerClick" @click.capture="outerClick">-->
+<!--        <div class="inner" @click="innerClick" @click.capture="innerClick">-->
+<!--            <input type="button" @click="buttonClick" @click.capture="buttonClick" value="点击">-->
+<!--            <p>{{msg}}</p>-->
+<!--        </div>-->
+<!--    </div>-->
+
+    <!-- 6、.once 修饰事件: 此事件只执行一次 -->
+<!--    <div id="app" class="outer" @click="outerClick">-->
+<!--        <div class="inner" @click="innerClick">-->
+<!--            <input type="button" @click.once="buttonClick" value="点击">-->
+<!--            <p>{{msg}}</p>-->
+<!--        </div>-->
+<!--    </div>-->
+<script>
+    let vm = new Vue({
+        el: "#app",
+        data: {
+          msg: 'hello world',
+          baidu: '百度'
+        },
+        methods: {
+            outerClick: () => {
+                console.log('OUTER 点击');
+            },
+            innerClick: () => {
+                console.log('INNER 点击');
+            },
+            buttonClick: () => {
+                console.log('BUTTON 点击');
+            },
+            linkClick: () => {
+                console.log('百度');
+            }
+        }
+    })
+
+</script>
+</body>
+</html>
