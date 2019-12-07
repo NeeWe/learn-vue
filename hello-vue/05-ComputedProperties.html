@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="lib/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+</head>
+<body>
+<!-- 模板内使用表达式非常便利 但会让模板过重且难以维护   -->
+<!--    <div id="app">-->
+<!--        <p>{{msg}}</p>-->
+<!--        <p>{{msg.split('').reverse().join('')}}</p>-->
+<!--    </div>-->
+
+<!--
+    使用函数也可以达到同样的效果，计算属性与函数不同的是，计算属性
+    是基于它们的响应式依赖进行缓存的。只有相关依赖发生改变时，他才
+    会重新计算；而函数则每次都会进行计算
+ -->
+<!--    <div id="app">-->
+<!--        <p>{{msg}}</p>-->
+<!--        <p>{{reversedMessage}}</p>-->
+<!--    </div>-->
+
+    <!-- 计算属性默认只有 getter 如有需要可重写 setter -->
+<!--    <div id="app2">-->
+<!--        <p>{{fullName}}</p>-->
+<!--    </div>-->
+
+<!--    <div id="app3">-->
+<!--        <p>-->
+<!--            Ask a yes/no question:-->
+<!--            <input type="text" v-model="question">-->
+<!--        </p>-->
+<!--        <p>{{answer}}</p>-->
+<!--        <img :src="imgSrc">-->
+<!--    </div>-->
+
+<script>
+    // let vm = new Vue({
+    //     el: '#app',
+    //     data: {
+    //         fullName: 'hello world'
+    //     },
+    //     computed: {
+    //         reversedMessage: (_this = this) => {
+    //             return _this.msg.split('').reverse().join('');
+    //         }
+    //     }
+    // });
+    //
+    // let vm2 = new Vue({
+    //     el: '#app2',
+    //     data: {
+    //         firstName: 'Foo',
+    //         lastName: 'Bar',
+    //     },
+    //     computed: {
+    //         fullName: {
+    //             get: (_this = this) => {
+    //                 console.log('执行 get 方法');
+    //                 return _this.firstName + ' ' + _this.lastName;
+    //             },
+    //             set: function(_fullName) {
+    //                 console.log('执行 set 方法');
+    //                 this.firstName = _fullName.split(' ')[0];
+    //                 this.lastName = _fullName.split(' ')[1];
+    //             }
+    //         }
+    //     }
+    // });
+
+    // watch ?
+    // let vm3 = new Vue({
+    //     el: '#app3',
+    //     data: {
+    //         question: '',
+    //         answer: 'I cannot give you an answer until you ask a question',
+    //         imgSrc: ''
+    //     },
+    //     watch: {
+    //         // 如果 question 发生变化，这个函数就会运行
+    //         question: function (newQuestion, oldQuestion) {
+    //             this.answer = 'Waiting for you to stop typing...';
+    //             this.debouncedGetAnswer();
+    //         }
+    //     },
+    //     created: function () {
+    //             this.debouncedGetAnswer = _.debounce(this.getAnswer, 500);
+    //     },
+    //     methods: {
+    //         getAnswer: function () {
+    //             if(this.question.indexOf('?') === -1) {
+    //                 this.answer = 'Questions usually contain a question mark. ;-)'
+    //                 return
+    //             }
+    //             this.answer = 'Thinking...';
+    //             let vm = this;
+    //             axios.get('https://yesno.wtf/api').then(function (response) {
+    //                 console.log(response);
+    //                 vm.answer = _.capitalize(response.data.answer);
+    //                 vm.imgSrc = response.data.image;
+    //             }).catch(function (error) {
+    //                 vm.answer = error;
+    //             });
+    //         }
+    //     }
+    // })
+</script>
+</body>
+</html>
